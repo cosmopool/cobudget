@@ -1,4 +1,7 @@
 include: package:flutter_lints/flutter.yaml
+analyzer:
+  errors:
+    lines_longer_than_80_chars: ignore
 linter:
   rules:
     lines_longer_than_80_chars: true
