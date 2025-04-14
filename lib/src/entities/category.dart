@@ -1,18 +1,17 @@
-sealed class Category {
-  Category({required this.id, required this.name});
+class Category {
+  Category({
+    required this.id,
+    required this.name,
+    required this.percentage,
+    required this.parentId,
+    required this.uses,
+  });
 
   final String id;
   final String name;
-}
+  final double percentage;
+  final String? parentId;
+  int uses;
 
-class SubCategory implements Category {
-  SubCategory({required this.parent, required this.id, required this.name});
-
-  final Category parent;
-
-  @override
-  final String id;
-
-  @override
-  final String name;
+  bool get inUse => uses > 0;
 }
