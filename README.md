@@ -16,11 +16,8 @@ The user is able to choose the behaviour of budget overlimit:
     - shrink other budgets to stay on monthly budget sum
     - budget warning (just visual feedback)
 
-### spender
-The person who spend the money
-
-### split
-The user must be able to split a transaction between spenders or between tags
-
-### transaction
-A transaction represents a real world transfer between person and business or person to person
+### terms
+budget: The sum (and limit) of a collection os tags pre-determined by the user
+spender: The person who spend the money
+split: The user must be able to split a transaction between spenders or between tags
+transaction: A transaction represents a real world transfer between person and business or person to person
