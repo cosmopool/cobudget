@@ -2,8 +2,8 @@ enum TagKind { transaction, user }
 
 sealed class Tag {
   Tag({required this.id, required this.name, required this.kind})
-      : assert(id.isNotEmpty),
-        assert(name.isNotEmpty);
+    : assert(id.isNotEmpty),
+      assert(name.isNotEmpty);
 
   final String id;
   final String name;
@@ -12,22 +12,32 @@ sealed class Tag {
 
 class ParentTag implements Tag {
   ParentTag({required this.id, required this.name, required this.kind})
-      : assert(id.isNotEmpty),
-        assert(name.isNotEmpty);
+    : assert(id.isNotEmpty),
+      assert(name.isNotEmpty);
 
+  @override
   final String id;
+  @override
   final String name;
+  @override
   final TagKind kind;
 }
 
 class SubTag implements Tag {
-  SubTag({required this.id, required this.name, required this.parentId, required this.kind})
-      : assert(id.isNotEmpty),
-        assert(name.isNotEmpty),
-        assert(parentId.isNotEmpty);
+  SubTag({
+    required this.id,
+    required this.name,
+    required this.parentId,
+    required this.kind,
+  }) : assert(id.isNotEmpty),
+       assert(name.isNotEmpty),
+       assert(parentId.isNotEmpty);
 
+  @override
   final String id;
+  @override
   final String name;
   final String parentId;
+  @override
   final TagKind kind;
 }

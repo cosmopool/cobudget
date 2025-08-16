@@ -1,4 +1,4 @@
-import "tag.dart";
+import "package:cobudget/src/entities/tag.dart";
 
 class Budget {
   Budget({
@@ -8,10 +8,10 @@ class Budget {
     required this.name,
     required this.image,
     required this.tag,
-  })  : assert(name.isNotEmpty),
-        assert(amount > 0),
-        assert(month > 0),
-        assert(year > 0);
+  }) : assert(name.isNotEmpty),
+       assert(amount > 0),
+       assert(month > 0),
+       assert(year > 0);
 
   factory Budget.withDateTime({
     required DateTime date,
@@ -19,15 +19,14 @@ class Budget {
     required String name,
     required String image,
     required ParentTag tag,
-  }) =>
-      Budget(
-        year: date.year,
-        month: date.month,
-        amount: amount,
-        name: name,
-        image: image,
-        tag: tag,
-      );
+  }) => Budget(
+    year: date.year,
+    month: date.month,
+    amount: amount,
+    name: name,
+    image: image,
+    tag: tag,
+  );
 
   final int month;
   final int year;
