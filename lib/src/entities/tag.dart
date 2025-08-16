@@ -10,34 +10,13 @@ sealed class Tag {
   final TagKind kind;
 }
 
-class ParentTag implements Tag {
-  ParentTag({required this.id, required this.name, required this.kind})
-    : assert(id.isNotEmpty),
-      assert(name.isNotEmpty);
-
-  @override
-  final String id;
-  @override
-  final String name;
-  @override
-  final TagKind kind;
+class ParentTag extends Tag {
+  ParentTag({required super.id, required super.name, required super.kind});
 }
 
-class SubTag implements Tag {
-  SubTag({
-    required this.id,
-    required this.name,
-    required this.parentId,
-    required this.kind,
-  }) : assert(id.isNotEmpty),
-       assert(name.isNotEmpty),
-       assert(parentId.isNotEmpty);
+class SubTag extends Tag {
+  SubTag({required super.id, required super.name, required this.parentId, required super.kind})
+    : assert(parentId.isNotEmpty);
 
-  @override
-  final String id;
-  @override
-  final String name;
   final String parentId;
-  @override
-  final TagKind kind;
 }
