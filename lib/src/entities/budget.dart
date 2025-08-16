@@ -18,7 +18,7 @@ class Budget {
     required double amount,
     required String name,
     required String image,
-    required ParentTag tag,
+    required Tag tag,
   }) => Budget(
     year: date.year,
     month: date.month,

@@ -37,7 +37,7 @@ class SqliteDatabase {
   """);
 
     db.execute("""
-    CREATE TABLE IF NOT EXISTS subtags (
+    CREATE TABLE IF NOT EXISTS tags_relationship (
       tag_id INTEGER NOT NULL,
       parent_tag_id INTEGER NOT NULL
     );
