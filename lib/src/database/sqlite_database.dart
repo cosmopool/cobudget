@@ -62,8 +62,12 @@ class SqliteDatabase {
     );
   """);
 
-    db.execute("CREATE INDEX IF NOT EXISTS entity_tags_index_1 ON entity_tags (entity_id)");
-    db.execute("CREATE INDEX IF NOT EXISTS entity_tags_index_2 ON entity_tags (tag_id)");
+    db.execute(
+      """CREATE INDEX IF NOT EXISTS entity_tags_index_1 ON entity_tags (entity_id)""",
+    );
+    db.execute(
+      """CREATE INDEX IF NOT EXISTS entity_tags_index_2 ON entity_tags (tag_id)""",
+    );
 
     db.execute("""
     CREATE TABLE IF NOT EXISTS payment_methods_kind (
