@@ -15,8 +15,12 @@ class ParentTag extends Tag {
 }
 
 class SubTag extends Tag {
-  SubTag({required super.id, required super.name, required this.parentId, required super.kind})
-    : assert(parentId.isNotEmpty);
+  SubTag({
+    required super.id,
+    required super.name,
+    required this.parentId,
+    required super.kind,
+  }) : assert(parentId.isNotEmpty);
 
   final String parentId;
 }
