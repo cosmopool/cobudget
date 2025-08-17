@@ -7,7 +7,7 @@ class Budget {
     required this.amount,
     required this.name,
     required this.image,
-    required this.tag,
+    required this.tags,
   }) : assert(name.isNotEmpty),
        assert(amount > 0),
        assert(month > 0),
@@ -18,14 +18,14 @@ class Budget {
     required double amount,
     required String name,
     required String image,
-    required Tag tag,
+    required List<Tag> tags,
   }) => Budget(
     year: date.year,
     month: date.month,
     amount: amount,
     name: name,
     image: image,
-    tag: tag,
+    tags: tags,
   );
 
   final int month;
@@ -33,7 +33,7 @@ class Budget {
   final double amount;
   final String name;
   final String image;
-  final Tag tag;
+  final List<Tag> tags;
 
   DateTime get date => DateTime(year, month);
 }
