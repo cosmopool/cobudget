@@ -22,7 +22,7 @@ class Transaction {
   final String name;
   final String? description;
   final Budget budget;
-  final int value;
+  final double value;
   final DateTime createdAt;
   final List<Tag> tags;
   final List<TransactionSplit> splits;
