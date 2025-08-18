@@ -7,6 +7,7 @@ import "package:cobudget/src/mappers/tag_mapper.dart";
 import "package:flutter_test/flutter_test.dart";
 
 void main() {
+  const id = "budget id";
   const month = 1;
   const year = 1990;
   const amount = 109.99;
@@ -17,6 +18,7 @@ void main() {
   final List<Map<String, dynamic>> tagsMap = tags.map(TagMapper.toMap).toList();
 
   final budgetStub = Budget(
+    id: id,
     month: month,
     year: year,
     amount: amount,
@@ -27,11 +29,12 @@ void main() {
 
   final String tagsK = json.encode(tagsMap);
   final budgetJsonStub =
-      '''{"${BudgetMapper.kMonth}":$month,"${BudgetMapper.kYear}":$year,"${BudgetMapper.kAmount}":$amount,"${BudgetMapper.kName}":"$name","${BudgetMapper.kImage}":"$image","${BudgetMapper.kTags}":$tagsK}''';
+      '''{"${BudgetMapper.kId}":"$id","${BudgetMapper.kMonth}":$month,"${BudgetMapper.kYear}":$year,"${BudgetMapper.kAmount}":$amount,"${BudgetMapper.kName}":"$name","${BudgetMapper.kImage}":"$image","${BudgetMapper.kTags}":$tagsK}''';
 
   test("toMap should return a map with same values as entity", () {
     final Map<String, dynamic> map = BudgetMapper.toMap(budgetStub);
 
+    expect(map[BudgetMapper.kId], id);
     expect(map[BudgetMapper.kMonth], month);
     expect(map[BudgetMapper.kYear], year);
     expect(map[BudgetMapper.kAmount], amount);
@@ -42,6 +45,7 @@ void main() {
 
   test("fromMap should return an entity with same values", () {
     final Map<String, dynamic> map = {
+      BudgetMapper.kId: id,
       BudgetMapper.kMonth: month,
       BudgetMapper.kYear: year,
       BudgetMapper.kAmount: amount,
@@ -52,6 +56,7 @@ void main() {
 
     final Budget budget = BudgetMapper.fromMap(map);
 
+    expect(budget.id, map[BudgetMapper.kId]);
     expect(budget.month, map[BudgetMapper.kMonth]);
     expect(budget.year, map[BudgetMapper.kYear]);
     expect(budget.amount, map[BudgetMapper.kAmount]);
@@ -69,6 +74,7 @@ void main() {
   test("fromJson should return an entity with same values", () {
     final Budget budget = BudgetMapper.fromJson(budgetJsonStub);
 
+    expect(budget.id, budgetStub.id);
     expect(budget.month, budgetStub.month);
     expect(budget.year, budgetStub.year);
     expect(budget.amount, budgetStub.amount);

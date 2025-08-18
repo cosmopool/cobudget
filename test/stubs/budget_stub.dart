@@ -4,6 +4,7 @@ import "package:cobudget/src/mappers/budget_mapper.dart";
 import "tag_stub.dart";
 
 abstract class BudgetStub {
+  static const id = "budget id";
   static const month = 1;
   static const year = 1990;
   static const amount = 109.99;
@@ -11,6 +12,7 @@ abstract class BudgetStub {
   static const image = "budget image";
 
   static final stub = Budget(
+    id: id,
     month: month,
     year: year,
     amount: amount,
