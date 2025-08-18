@@ -28,9 +28,9 @@ abstract class BudgetMapper {
         .cast<Map<String, dynamic>>();
 
     return Budget(
-      month: map[kMonth] as int,
-      year: map[kYear] as int,
-      amount: map[kAmount] as double,
+      month: int.parse(map[kMonth].toString()),
+      year: int.parse(map[kYear].toString()),
+      amount: double.parse(map[kAmount].toString()),
       name: map[kName] as String,
       image: map[kImage] as String,
       tags: List<Tag>.from(tagsMap.map(TagMapper.fromMap)),
