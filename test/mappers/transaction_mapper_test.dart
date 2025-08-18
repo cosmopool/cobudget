@@ -4,7 +4,6 @@ import "package:cobudget/src/entities/transaction.dart";
 import "package:cobudget/src/entities/transaction_split.dart";
 import "package:cobudget/src/mappers/budget_mapper.dart";
 import "package:cobudget/src/mappers/transaction_mapper.dart";
-import "package:flutter/cupertino.dart";
 import "package:flutter_test/flutter_test.dart";
 
 import "../stubs/budget_stub.dart";
