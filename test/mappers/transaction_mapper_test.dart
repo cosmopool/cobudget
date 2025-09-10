@@ -12,12 +12,13 @@ import "../stubs/transaction_split_stub.dart";
 import "../stubs/transaction_stub.dart";
 
 void main() {
-  final Transaction stub = TransactionStub.stub;
+  final Transaction stub = TransactionStub.stubSynced;
 
   test("toMap should return a map with same values as entity", () {
     final Map<String, dynamic> map = TransactionMapper.toMap(stub);
 
-    expect(map[TransactionMapper.kId], stub.id);
+    expect(map[TransactionMapper.kLocalId], stub.localId);
+    expect(map[TransactionMapper.kExternalId], stub.externalId);
     expect(map[TransactionMapper.kName], stub.name);
     expect(map[TransactionMapper.kDescription], stub.description);
     expect(map[TransactionMapper.kBudget], BudgetMapper.toMap(stub.budget));
@@ -32,7 +33,8 @@ void main() {
 
   test("fromMap should return an entity with same values", () {
     final Map<String, dynamic> map = {
-      TransactionMapper.kId: stub.id,
+      TransactionMapper.kLocalId: stub.localId,
+      TransactionMapper.kExternalId: stub.externalId,
       TransactionMapper.kName: stub.name,
       TransactionMapper.kDescription: stub.description,
       TransactionMapper.kBudget: BudgetStub.map,
@@ -44,7 +46,8 @@ void main() {
 
     final Transaction result = TransactionMapper.fromMap(map);
 
-    expect(result.id, stub.id);
+    expect(result.localId, stub.localId);
+    expect(result.externalId, stub.externalId);
     expect(result.name, stub.name);
     expect(result.description, stub.description);
     expect(result.budget, isA<Budget>());

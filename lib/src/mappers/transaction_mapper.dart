@@ -8,18 +8,20 @@ import "package:cobudget/src/mappers/tag_mapper.dart";
 import "package:cobudget/src/mappers/transaction_split_mapper.dart";
 
 abstract class TransactionMapper {
-  static const kId = "id";
+  static const kLocalId = "local_id";
+  static const kExternalId = "external_id";
   static const kName = "name";
   static const kDescription = "description";
   static const kBudget = "budget";
   static const kValue = "value";
-  static const kCreatedAt = "createdAt";
+  static const kCreatedAt = "created_at";
   static const kTags = "tags";
   static const kSplits = "splits";
 
   static Map<String, dynamic> toMap(Transaction transaction) {
     return <String, dynamic>{
-      kId: transaction.id,
+      kLocalId: transaction.localId,
+      if (transaction.externalId != null) kExternalId: transaction.externalId,
       kName: transaction.name,
       kDescription: transaction.description,
       kBudget: BudgetMapper.toMap(transaction.budget),
@@ -41,7 +43,8 @@ abstract class TransactionMapper {
             .toList();
 
     return Transaction(
-      id: map[kId] as String,
+      localId: map[kLocalId] as int,
+      externalId: map[kExternalId] as String,
       name: map[kName] as String,
       description: map[kDescription] as String?,
       budget: BudgetMapper.fromMap(map[kBudget] as Map<String, dynamic>),

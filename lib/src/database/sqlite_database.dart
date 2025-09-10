@@ -29,6 +29,20 @@ class SqliteDatabase {
   """);
 
     db.execute("""
+    CREATE TABLE IF NOT EXISTS transactions_external_id (
+      local_id INTEGER NOT NULL,
+      external_id TEXT,
+      FOREIGN KEY(local_id) REFERENCES transactions(id)
+    );
+  """);
+    db.execute(
+      """CREATE INDEX IF NOT EXISTS transactions_local_id_index ON transactions_external_id (local_id)""",
+    );
+    db.execute(
+      """CREATE INDEX IF NOT EXISTS transactions_external_id_index ON transactions_external_id (external_id)""",
+    );
+
+    db.execute("""
     CREATE TABLE IF NOT EXISTS tags (
       id INTEGER NOT NULL PRIMARY KEY,
       name TEXT NOT NULL,
