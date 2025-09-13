@@ -1,4 +1,4 @@
-import "package:cobudget/src/entities/transaction.dart";
+import "package:cobudget/src/transaction/transaction.dart";
 
 import "budget_stub.dart";
 import "tag_stub.dart";

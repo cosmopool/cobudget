@@ -1,11 +1,11 @@
 import "dart:convert";
 
 import "package:cobudget/src/entities/tag.dart";
-import "package:cobudget/src/entities/transaction.dart";
 import "package:cobudget/src/entities/transaction_split.dart";
 import "package:cobudget/src/mappers/budget_mapper.dart";
 import "package:cobudget/src/mappers/tag_mapper.dart";
 import "package:cobudget/src/mappers/transaction_split_mapper.dart";
+import "package:cobudget/src/transaction/transaction.dart";
 
 abstract class TransactionMapper {
   static const kLocalId = "local_id";
