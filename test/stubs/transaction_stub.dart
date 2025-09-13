@@ -26,7 +26,6 @@ abstract class TransactionStub {
 
   static final stubUnsynced = Transaction(
     localId: 2,
-    externalId: "${externalId}2",
     name: name,
     description: description,
     budget: BudgetStub.stub,
