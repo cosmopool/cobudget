@@ -2,10 +2,10 @@ import "dart:convert";
 
 import "package:cobudget/src/entities/tag.dart";
 import "package:cobudget/src/entities/transaction_split.dart";
-import "package:cobudget/src/mappers/budget_mapper.dart";
 import "package:cobudget/src/mappers/tag_mapper.dart";
 import "package:cobudget/src/mappers/transaction_split_mapper.dart";
 import "package:cobudget/src/transaction/transaction.dart";
+import "package:cobudget/src/utils/aliases.dart";
 
 abstract class TransactionMapper {
   static const kLocalId = "local_id";
@@ -24,7 +24,7 @@ abstract class TransactionMapper {
       if (transaction.externalId != null) kExternalId: transaction.externalId,
       kName: transaction.name,
       kDescription: transaction.description,
-      kBudget: BudgetMapper.toMap(transaction.budget),
+      kBudget: transaction.budget,
       kValue: transaction.value,
       kCreatedAt: transaction.createdAt.millisecondsSinceEpoch,
       kTags: transaction.tags.map(TagMapper.toMap).toList(),
@@ -43,11 +43,11 @@ abstract class TransactionMapper {
             .toList();
 
     return Transaction(
-      localId: map[kLocalId] as int,
+      localId: map[kLocalId] as LocalId,
       externalId: map[kExternalId] as String,
       name: map[kName] as String,
       description: map[kDescription] as String?,
-      budget: BudgetMapper.fromMap(map[kBudget] as Map<String, dynamic>),
+      budget: map[kBudget] as LocalId,
       value: double.parse(map[kValue].toString()),
       createdAt: DateTime.fromMillisecondsSinceEpoch(map[kCreatedAt] as int),
       tags: tagsMap,

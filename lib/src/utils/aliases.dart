@@ -1,0 +1,1 @@
+typedef LocalId = int;

@@ -23,10 +23,10 @@ Future<void> saveTransaction(Transaction transaction, Database db) async {
         value,
         created_at
       ) VALUES (
-        "${transaction.localId}",
+        ${transaction.localId},
         "${transaction.name}",
         $description,
-        "${transaction.budget.id}",
+        ${transaction.budget},
         $value,
         ${DateTime.now().millisecondsSinceEpoch}
       )

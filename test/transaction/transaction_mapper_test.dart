@@ -1,12 +1,9 @@
-import "package:cobudget/src/entities/budget.dart";
 import "package:cobudget/src/entities/tag.dart";
 import "package:cobudget/src/entities/transaction_split.dart";
-import "package:cobudget/src/mappers/budget_mapper.dart";
 import "package:cobudget/src/transaction/transaction.dart";
 import "package:cobudget/src/transaction/transaction_mapper.dart";
 import "package:flutter_test/flutter_test.dart";
 
-import "../stubs/budget_stub.dart";
 import "../stubs/tag_stub.dart";
 import "../stubs/transaction_split_stub.dart";
 import "../stubs/transaction_stub.dart";
@@ -21,7 +18,7 @@ void main() {
     expect(map[TransactionMapper.kExternalId], stub.externalId);
     expect(map[TransactionMapper.kName], stub.name);
     expect(map[TransactionMapper.kDescription], stub.description);
-    expect(map[TransactionMapper.kBudget], BudgetMapper.toMap(stub.budget));
+    expect(map[TransactionMapper.kBudget], stub.budget);
     expect(map[TransactionMapper.kValue], stub.value);
     expect(
       map[TransactionMapper.kCreatedAt],
@@ -37,7 +34,7 @@ void main() {
       TransactionMapper.kExternalId: stub.externalId,
       TransactionMapper.kName: stub.name,
       TransactionMapper.kDescription: stub.description,
-      TransactionMapper.kBudget: BudgetStub.map,
+      TransactionMapper.kBudget: stub.localId,
       TransactionMapper.kValue: stub.value,
       TransactionMapper.kCreatedAt: stub.createdAt.millisecondsSinceEpoch,
       TransactionMapper.kTags: TagStub.maps,
@@ -50,7 +47,7 @@ void main() {
     expect(result.externalId, stub.externalId);
     expect(result.name, stub.name);
     expect(result.description, stub.description);
-    expect(result.budget, isA<Budget>());
+    expect(result.budget, stub.localId);
     expect(result.value, stub.value);
     expect(result.createdAt, stub.createdAt);
     expect(result.tags, isA<List<Tag>>());

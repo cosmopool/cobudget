@@ -1,6 +1,7 @@
 import "package:cobudget/src/entities/budget.dart";
 import "package:cobudget/src/entities/tag.dart";
 import "package:cobudget/src/entities/transaction_split.dart";
+import "package:cobudget/src/utils/aliases.dart";
 
 class Transaction {
   Transaction({
@@ -24,7 +25,7 @@ class Transaction {
   final String? externalId;
   final String name;
   final String? description;
-  final Budget budget;
+  final LocalId? budget;
   final double value;
   final DateTime createdAt;
   final List<Tag> tags;
