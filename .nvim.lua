@@ -1,4 +1,4 @@
-vim.opt.colorcolumn = "80"
+vim.opt.colorcolumn = "100"
 
 local imported, flutter_tools = pcall(require, "flutter-tools")
 if (not imported) then
