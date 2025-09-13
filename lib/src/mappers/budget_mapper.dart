@@ -5,7 +5,8 @@ import "package:cobudget/src/entities/tag.dart";
 import "package:cobudget/src/mappers/tag_mapper.dart";
 
 abstract class BudgetMapper {
-  static const kId = "id";
+  static const kLocalId = "localId";
+  static const kExternalId = "externalId";
   static const kMonth = "month";
   static const kYear = "year";
   static const kAmount = "amount";
@@ -15,7 +16,8 @@ abstract class BudgetMapper {
 
   static Map<String, dynamic> toMap(Budget budget) {
     return <String, dynamic>{
-      kId: budget.id,
+      kLocalId: budget.localId,
+      kExternalId: budget.externalId,
       kMonth: budget.month,
       kYear: budget.year,
       kAmount: budget.amount,
@@ -30,7 +32,8 @@ abstract class BudgetMapper {
         .cast<Map<String, dynamic>>();
 
     return Budget(
-      id: map[kId] as String,
+      localId: map[kLocalId] as int,
+      externalId: map[kExternalId] as String,
       month: int.parse(map[kMonth].toString()),
       year: int.parse(map[kYear].toString()),
       amount: double.parse(map[kAmount].toString()),

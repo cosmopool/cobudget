@@ -2,7 +2,8 @@ import "package:cobudget/src/entities/tag.dart";
 
 class Budget {
   Budget({
-    required this.id,
+    required this.localId,
+    required this.externalId,
     required this.month,
     required this.year,
     required this.amount,
@@ -15,14 +16,16 @@ class Budget {
        assert(year > 0);
 
   factory Budget.withDateTime({
-    required String id,
+    required int localId,
+    required String externalId,
     required DateTime date,
     required double amount,
     required String name,
     required String image,
     required List<Tag> tags,
   }) => Budget(
-    id: id,
+    localId: localId,
+    externalId: externalId,
     year: date.year,
     month: date.month,
     amount: amount,
@@ -31,7 +34,8 @@ class Budget {
     tags: tags,
   );
 
-  final String id;
+  final int localId;
+  final String externalId;
   final int month;
   final int year;
   final double amount;
