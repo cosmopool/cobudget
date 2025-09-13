@@ -21,7 +21,7 @@ class SqliteDatabase {
       id INTEGER NOT NULL PRIMARY KEY,
       name TEXT NOT NULL,
       description TEXT,
-      budget_id INTEGER NOT NULL,
+      budget_id INTEGER,
       value INTEGER NOT NULL,
       created_at INTEGER NOT NULL,
       FOREIGN KEY(budget_id) REFERENCES budgets(id)
