@@ -5,8 +5,8 @@ void main() {
   test("create a user with random nanoid", () {
     final User user = User.withRandomId(name: "name", email: "email");
 
-    expect(user.id, isNotEmpty);
-    expect(user.id.length, 21);
+    expect(user.externalId, isNotEmpty);
+    expect(user.externalId.length, 21);
   });
 
   test("create multiple users should generate different ids", () {
@@ -14,8 +14,8 @@ void main() {
     final User user2 = User.withRandomId(name: "name", email: "email");
     final User user3 = User.withRandomId(name: "name", email: "email");
 
-    expect(user1.id, isNot(user2.id));
-    expect(user2.id, isNot(user3.id));
-    expect(user3.id, isNot(user1.id));
+    expect(user1.externalId, isNot(user2.externalId));
+    expect(user2.externalId, isNot(user3.externalId));
+    expect(user3.externalId, isNot(user1.externalId));
   });
 }
