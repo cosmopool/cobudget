@@ -6,24 +6,31 @@ void main() {
   const localId = 1;
   const externalId = "id_stub";
   const name = "name_stub";
-  const email = "email_stub";
+  const email = "email@stub.com";
 
   test("toMap should return a map with same values as entity", () {
     final user = User(localId: localId, externalId: externalId, name: name, email: email);
 
     final Map<String, dynamic> map = UserMapper.toMap(user);
 
-    expect(map["id"], externalId);
+    expect(map["localId"], localId);
+    expect(map["externalId"], externalId);
     expect(map["name"], name);
     expect(map["email"], email);
   });
 
   test("fromMap should return an entity with same values", () {
-    final map = {"id": externalId, "name": name, "email": email};
+    final Map<String, dynamic> map = {
+      "localId": 1,
+      "externalId": externalId,
+      "name": name,
+      "email": email,
+    };
 
     final User user = UserMapper.fromMap(map);
 
-    expect(user.externalId, map["id"]);
+    expect(user.localId, map["localId"]);
+    expect(user.externalId, map["externalId"]);
     expect(user.name, map["name"]);
     expect(user.email, map["email"]);
   });
@@ -33,11 +40,14 @@ void main() {
 
     final String json = UserMapper.toJson(user);
 
-    expect(json, equals('{"id":"$externalId","name":"$name","email":"$email"}'));
+    expect(
+      json,
+      equals('{"localId":1,"externalId":"$externalId","name":"$name","email":"$email"}'),
+    );
   });
 
   test("fromJson should return an entity with same values", () {
-    const json = '{"id":"$externalId","name":"$name","email":"$email"}';
+    const json = '{"localId":1, "externalId":"$externalId","name":"$name","email":"$email"}';
 
     final User user = UserMapper.fromJson(json);
 

@@ -31,7 +31,7 @@ void main() {
 
   final String tagsK = json.encode(tagsMap);
   final budgetJsonStub =
-      '''{"${BudgetMapper.kExternalId}":"$externalId","${BudgetMapper.kMonth}":$month,"${BudgetMapper.kYear}":$year,"${BudgetMapper.kAmount}":$amount,"${BudgetMapper.kName}":"$name","${BudgetMapper.kImage}":"$image","${BudgetMapper.kTags}":$tagsK}''';
+      '''{"${BudgetMapper.kLocalId}":$localId,"${BudgetMapper.kExternalId}":"$externalId","${BudgetMapper.kMonth}":$month,"${BudgetMapper.kYear}":$year,"${BudgetMapper.kAmount}":$amount,"${BudgetMapper.kName}":"$name","${BudgetMapper.kImage}":"$image","${BudgetMapper.kTags}":$tagsK}''';
 
   test("toMap should return a map with same values as entity", () {
     final Map<String, dynamic> map = BudgetMapper.toMap(budgetStub);
