@@ -10,9 +10,9 @@ enum TagKind { transaction, user }
 class Tag {
   Tag({
     required this.localId,
-    required this.externalId,
     required this.name,
     required this.kind,
+    this.externalId,
     this.parentId,
   }) : assert(
          localId != 0,
@@ -20,6 +20,31 @@ class Tag {
        ),
        assert(externalId == null || externalId.isNotEmpty),
        assert(name.isNotEmpty);
+
+  /// Creates a new [Tag] object that is not yet persisted to the database.
+  ///
+  /// Generates a unique negative [localId] to serve as a temporary identifier.
+  /// This ID ensures the object can be used before being saved and assigned
+  /// a permanent, positive ID by the database.
+  factory Tag.unsaved({
+    required String name,
+    required TagKind kind,
+    ExternalId? externalId,
+    LocalId? parentId,
+    DateTime? createdAt,
+  }) {
+    final DateTime creation = createdAt ?? DateTime.now();
+    final int temporaryId = -creation.millisecondsSinceEpoch;
+    assert(temporaryId < 0);
+
+    return Tag(
+      localId: temporaryId,
+      externalId: externalId,
+      name: name,
+      kind: kind,
+      parentId: parentId,
+    );
+  }
 
   LocalId localId;
   final ExternalId? externalId;
