@@ -1,4 +1,5 @@
 import "package:cobudget/src/tags/tag.dart";
+import "package:cobudget/src/tags/tag_mapper.dart";
 
 class Budget {
   Budget({
@@ -44,4 +45,46 @@ class Budget {
   final List<Tag> tags;
 
   DateTime get date => DateTime(year, month);
+
+  // ------------------------------------------------------
+  // mapper
+  // ------------------------------------------------------
+
+  static const kLocalId = "local_id";
+  static const kExternalId = "external_id";
+  static const kMonth = "month";
+  static const kYear = "year";
+  static const kAmount = "amount";
+  static const kName = "name";
+  static const kImage = "image";
+  static const kTags = "tags";
+
+  static Map<String, dynamic> toMap(Budget budget) {
+    return <String, dynamic>{
+      kLocalId: budget.localId,
+      kExternalId: budget.externalId,
+      kMonth: budget.month,
+      kYear: budget.year,
+      kAmount: budget.amount,
+      kName: budget.name,
+      kImage: budget.image,
+      kTags: budget.tags.map(TagMapper.toMap).toList(),
+    };
+  }
+
+  static Budget fromMap(Map<String, dynamic> map) {
+    final List<Map<String, dynamic>> tagsMap = (map[kTags] as List<dynamic>)
+        .cast<Map<String, dynamic>>();
+
+    return Budget(
+      localId: map[kLocalId] as int,
+      externalId: map[kExternalId] as String,
+      month: int.parse(map[kMonth].toString()),
+      year: int.parse(map[kYear].toString()),
+      amount: double.parse(map[kAmount].toString()),
+      name: map[kName] as String,
+      image: map[kImage] as String,
+      tags: List<Tag>.from(tagsMap.map(TagMapper.fromMap)),
+    );
+  }
 }

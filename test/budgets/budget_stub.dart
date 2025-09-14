@@ -1,5 +1,4 @@
 import "package:cobudget/src/budgets/budget.dart";
-import "package:cobudget/src/budgets/budget_mapper.dart";
 
 import "../tags/tag_stub.dart";
 
@@ -23,5 +22,5 @@ abstract class BudgetStub {
     tags: TagStub.tags,
   );
 
-  static final Map<String, dynamic> map = BudgetMapper.toMap(stub);
+  static final Map<String, dynamic> map = Budget.toMap(stub);
 }
