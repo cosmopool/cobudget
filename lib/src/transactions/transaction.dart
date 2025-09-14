@@ -63,9 +63,29 @@ class Transaction {
   final List<Tag> tags;
   final List<TransactionSplit> splits;
 
+
+  /// Returns `true` if this entity has been persisted to the database.
+  ///
+  /// A positive `localId` indicates the entity has been saved and assigned
+  /// a permanent identifier by the database.
   bool get isSaved => localId > 0;
+
+  /// Returns `true` if this entity has not been persisted to the database yet.
+  /// The entity exists only in memory.
+  ///
+  /// Unsaved entities typically have negative `localId` values used as
+  /// temporary identifiers during creation.
   bool get isUnsaved => !isSaved;
 
+  /// Returns `true` if this entity has been synchronized with the backend server.
+  ///
+  /// A non-null `externalId` indicates the backend has processed this entity
+  /// and assigned it a permanent identifier in the remote system.
   bool get isSynced => externalId != null;
+
+  /// Returns `true` if this entity has not been synchronized with the backend server yet.
+  /// It exists only locally.
+  ///
+  /// Unsynchronized entities are on a queue waiting for syncronization.
   bool get isUnsynced => !isSynced;
 }
