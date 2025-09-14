@@ -31,7 +31,7 @@ class SqliteDatabase {
     db.execute("""
     CREATE TABLE IF NOT EXISTS transactions_external_id (
       local_id INTEGER NOT NULL,
-      external_id TEXT,
+      external_id TEXT UNIQUE,
       FOREIGN KEY(local_id) REFERENCES transactions(id)
     );
   """);
