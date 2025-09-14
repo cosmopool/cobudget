@@ -38,6 +38,6 @@ Future<void> createBudget(Budget budget, Database db) async {
     """;
 
   db.execute(sql);
-  // TODO: make INSERT and LAST_INSERTED_ROW on the same transaction to prevent returning wrong id
+  // TODO(kaio): make INSERT and LAST_INSERTED_ROW on the same transaction to prevent returning wrong id
   budget.localId = db.lastInsertRowId;
 }
