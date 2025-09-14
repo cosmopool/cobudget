@@ -1,4 +1,5 @@
 import "package:cobudget/src/tags/tag.dart";
+import "package:cobudget/src/utils/aliases.dart";
 
 class Budget {
   Budget({
@@ -10,10 +11,40 @@ class Budget {
     required this.name,
     required this.image,
     required this.tags,
-  }) : assert(name.isNotEmpty),
+  }) : assert(
+         localId != 0,
+         "should be a negative integer (not saved) or positive (saved in database)",
+       ),
+       assert(externalId == null || externalId.isNotEmpty),
+       assert(name.isNotEmpty),
        assert(amount > 0),
        assert(month > 0),
        assert(year > 0);
+
+  factory Budget.unsaved({
+    required DateTime date,
+    required double amount,
+    required String name,
+    required String image,
+    required List<Tag> tags,
+    ExternalId? externalId,
+    DateTime? createdAt,
+  }) {
+    final DateTime creation = createdAt ?? DateTime.now();
+    final int temporaryId = -creation.millisecondsSinceEpoch;
+    assert(temporaryId < 0);
+
+    return Budget(
+      localId: temporaryId,
+      externalId: externalId,
+      year: date.year,
+      month: date.month,
+      amount: amount,
+      name: name,
+      image: image,
+      tags: tags,
+    );
+  }
 
   factory Budget.withDateTime({
     required int localId,
@@ -34,8 +65,8 @@ class Budget {
     tags: tags,
   );
 
-  final int localId;
-  final String externalId;
+  final LocalId localId;
+  final ExternalId? externalId;
   final int month;
   final int year;
   final double amount;
