@@ -4,13 +4,13 @@ import "package:cobudget/src/utils/aliases.dart";
 class Budget {
   Budget({
     required this.localId,
-    required this.externalId,
     required this.month,
     required this.year,
     required this.amount,
     required this.name,
-    required this.image,
     required this.tags,
+    this.externalId,
+    this.image,
   }) : assert(
          localId != 0,
          "should be a negative integer (not saved) or positive (saved in database)",
@@ -30,9 +30,9 @@ class Budget {
     required DateTime date,
     required double amount,
     required String name,
-    required String image,
     required List<Tag> tags,
     ExternalId? externalId,
+    String? image,
     DateTime? createdAt,
   }) {
     final DateTime creation = createdAt ?? DateTime.now();
@@ -57,8 +57,8 @@ class Budget {
     required DateTime date,
     required double amount,
     required String name,
-    required String image,
     required List<Tag> tags,
+    String? image,
   }) => Budget(
     localId: localId,
     externalId: externalId,
@@ -70,13 +70,13 @@ class Budget {
     tags: tags,
   );
 
-  final LocalId localId;
+  LocalId localId;
   final ExternalId? externalId;
   final int month;
   final int year;
   final double amount;
   final String name;
-  final String image;
+  final String? image;
   final List<Tag> tags;
 
   DateTime get date => DateTime(year, month);
