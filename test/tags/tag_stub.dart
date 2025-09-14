@@ -1,5 +1,4 @@
 import "package:cobudget/src/tags/tag.dart";
-import "package:cobudget/src/tags/tag_mapper.dart";
 
 abstract class TagStub {
   static const localId = 1;
@@ -11,7 +10,7 @@ abstract class TagStub {
 
   static final List<Tag> tags = [stub];
 
-  static final Map<String, dynamic> map = TagMapper.toMap(stub);
+  static final Map<String, dynamic> map = Tag.toMap(stub);
 
   static final List<Map<String, dynamic>> maps = [map];
 }

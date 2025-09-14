@@ -2,7 +2,6 @@ import "dart:convert";
 
 import "package:cobudget/src/budgets/budget.dart";
 import "package:cobudget/src/tags/tag.dart";
-import "package:cobudget/src/tags/tag_mapper.dart";
 import "package:flutter_test/flutter_test.dart";
 
 void main() {
@@ -15,7 +14,7 @@ void main() {
   const image = "image";
   final tag = Tag(localId: 1, externalId: "id", name: "tag_name", kind: TagKind.transaction);
   final tags = [tag];
-  final List<Map<String, dynamic>> tagsMap = tags.map(TagMapper.toMap).toList();
+  final List<Map<String, dynamic>> tagsMap = tags.map(Tag.toMap).toList();
 
   final budgetStub = Budget(
     localId: localId,
@@ -42,7 +41,7 @@ void main() {
     expect(map[Budget.kAmount], amount);
     expect(map[Budget.kName], name);
     expect(map[Budget.kImage], image);
-    expect(map[Budget.kTags], [TagMapper.toMap(tag)]);
+    expect(map[Budget.kTags], [Tag.toMap(tag)]);
   });
 
   test("fromMap should return an entity with same values", () {

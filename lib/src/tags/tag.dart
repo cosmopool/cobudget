@@ -26,4 +26,43 @@ class Tag {
   final String name;
   final TagKind kind;
   final String? parentId;
+
+  // ------------------------------------------------------
+  // mapper
+  // ------------------------------------------------------
+
+  static const kLocalId = "local_id";
+  static const kExternalId = "external_id";
+  static const kName = "name";
+  static const kKind = "kind";
+  static const kParentId = "parent_id";
+
+  static Map<String, dynamic> toMap(Tag tag) {
+    final map = <String, dynamic>{
+      kLocalId: tag.localId,
+      kExternalId: tag.externalId,
+      kName: tag.name,
+      kKind: tag.kind.index,
+      kParentId: tag.parentId,
+    };
+
+    return map;
+  }
+
+  static Tag fromMap(Map<String, dynamic> map) {
+    final int kindIndex = map[kKind];
+    final TagKind kind = TagKind.values[kindIndex];
+    final LocalId localId = map[kLocalId];
+    final ExternalId externalId = map[kExternalId];
+    final String name = map[kName];
+    final String? parentId = map[kParentId];
+
+    return Tag(
+      localId: localId,
+      externalId: externalId,
+      name: name,
+      kind: kind,
+      parentId: parentId,
+    );
+  }
 }

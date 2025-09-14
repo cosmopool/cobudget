@@ -1,7 +1,6 @@
 import "dart:convert";
 
 import "package:cobudget/src/tags/tag.dart";
-import "package:cobudget/src/tags/tag_mapper.dart";
 import "package:cobudget/src/transaction_splits/transaction_split.dart";
 import "package:cobudget/src/transaction_splits/transaction_split_mapper.dart";
 import "package:cobudget/src/transactions/transaction.dart";
@@ -27,14 +26,14 @@ abstract class TransactionMapper {
       kBudget: transaction.budget,
       kValue: transaction.value,
       kCreatedAt: transaction.createdAt.millisecondsSinceEpoch,
-      kTags: transaction.tags.map(TagMapper.toMap).toList(),
+      kTags: transaction.tags.map(Tag.toMap).toList(),
       kSplits: transaction.splits.map(TransactionSplitMapper.toMap).toList(),
     };
   }
 
   static Transaction fromMap(Map<String, dynamic> map) {
     final List<Tag> tagsMap = (map[kTags] as List<Map<String, dynamic>>)
-        .map<Tag>(TagMapper.fromMap)
+        .map<Tag>(Tag.fromMap)
         .toList();
 
     final List<TransactionSplit> splitsMap = (map[kSplits] as List<Map<String, dynamic>>)

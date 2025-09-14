@@ -1,5 +1,4 @@
 import "package:cobudget/src/tags/tag.dart";
-import "package:cobudget/src/tags/tag_mapper.dart";
 
 class Budget {
   Budget({
@@ -68,7 +67,7 @@ class Budget {
       kAmount: budget.amount,
       kName: budget.name,
       kImage: budget.image,
-      kTags: budget.tags.map(TagMapper.toMap).toList(),
+      kTags: budget.tags.map(Tag.toMap).toList(),
     };
   }
 
@@ -84,7 +83,7 @@ class Budget {
       amount: double.parse(map[kAmount].toString()),
       name: map[kName] as String,
       image: map[kImage] as String,
-      tags: List<Tag>.from(tagsMap.map(TagMapper.fromMap)),
+      tags: List<Tag>.from(tagsMap.map(Tag.fromMap)),
     );
   }
 }

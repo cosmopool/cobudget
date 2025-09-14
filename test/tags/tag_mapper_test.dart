@@ -1,5 +1,6 @@
+import "dart:convert";
+
 import "package:cobudget/src/tags/tag.dart";
-import "package:cobudget/src/tags/tag_mapper.dart";
 import "package:flutter_test/flutter_test.dart";
 
 void main() {
@@ -18,35 +19,48 @@ void main() {
       parentId: null,
     );
 
-    final Map<String, dynamic> map = TagMapper.toMap(tag);
+    final Map<String, dynamic> map = Tag.toMap(tag);
 
-    expect(map["id"], externalId);
-    expect(map["name"], name);
-    expect(map["kind"], index);
+    expect(map[Tag.kLocalId], localId);
+    expect(map[Tag.kExternalId], externalId);
+    expect(map[Tag.kName], name);
+    expect(map[Tag.kKind], index);
   });
 
   test("fromMap should return an entity with same values", () {
-    final Map<String, dynamic> map = {"id": externalId, "name": name, "kind": index};
+    final Map<String, dynamic> map = {
+      Tag.kLocalId: localId,
+      Tag.kExternalId: externalId,
+      Tag.kName: name,
+      Tag.kKind: index,
+    };
 
-    final Tag tag = TagMapper.fromMap(map);
+    final Tag tag = Tag.fromMap(map);
 
-    expect(tag.externalId, map["id"]);
-    expect(tag.name, map["name"]);
+    expect(tag.localId, map[Tag.kLocalId]);
+    expect(tag.externalId, map[Tag.kExternalId]);
+    expect(tag.name, map[Tag.kName]);
     expect(tag.kind, kind);
   });
 
   test("toJson should return a json with same values as entity", () {
     final tag = Tag(localId: localId, externalId: externalId, name: name, kind: kind);
 
-    final String json = TagMapper.toJson(tag);
+    final String jsonStr = json.encode(Tag.toMap(tag));
 
-    expect(json, equals('{"id":"$externalId","name":"$name","kind":$index,"parent_id":null}'));
+    expect(
+      jsonStr,
+      equals(
+        '{"local_id":$localId,"external_id":"$externalId","name":"$name","kind":$index,"parent_id":null}',
+      ),
+    );
   });
 
   test("fromJson should return an entity with same values", () {
-    final json = '{"id":"$externalId","name":"$name","kind":$index,"parent_id":null}';
+    final jsonStr =
+        '{"local_id":$localId,"external_id":"$externalId","name":"$name","kind":$index,"parent_id":null}';
 
-    final Tag tag = TagMapper.fromJson(json);
+    final Tag tag = Tag.fromMap(json.decode(jsonStr));
 
     expect(tag.externalId, externalId);
     expect(tag.name, name);
