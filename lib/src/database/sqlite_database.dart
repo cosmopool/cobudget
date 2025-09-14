@@ -60,13 +60,12 @@ class SqliteDatabase {
     db.execute("""
     CREATE TABLE IF NOT EXISTS budgets (
       id INTEGER NOT NULL PRIMARY KEY,
-      user_id INTEGER NOT NULL,
       month INTEGER NOT NULL,
       year INTEGER NOT NULL,
       amount INTEGER NOT NULL,
       name TEXT NOT NULL,
-      image TEXT NOT NULL,
-      tag_id INTEGER NOT NULL
+      image TEXT,
+      UNIQUE(month, year, name) ON CONFLICT FAIL
     );
   """);
 
