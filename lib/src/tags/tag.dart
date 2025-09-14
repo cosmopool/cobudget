@@ -18,14 +18,20 @@ class Tag {
          localId != 0,
          "should be a negative integer (not saved) or positive (saved in database)",
        ),
-       assert(externalId.isNotEmpty),
+       assert(externalId == null || externalId.isNotEmpty),
        assert(name.isNotEmpty);
 
   final LocalId localId;
-  final ExternalId externalId;
+  final ExternalId? externalId;
   final String name;
   final TagKind kind;
   final String? parentId;
+
+  bool get isSaved => localId > 0;
+  bool get isUnsaved => !isSaved;
+
+  bool get isSynced => externalId != null;
+  bool get isUnsynced => !isSynced;
 
   // ------------------------------------------------------
   // mapper
