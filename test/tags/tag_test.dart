@@ -1,4 +1,4 @@
-import "package:cobudget/src/entities/tag.dart";
+import "package:cobudget/src/tags/tag.dart";
 import "package:flutter_test/flutter_test.dart";
 
 void main() {

@@ -1,7 +1,7 @@
-import "package:cobudget/src/entities/budget.dart";
-import "package:cobudget/src/mappers/budget_mapper.dart";
+import "package:cobudget/src/budgets/budget.dart";
+import "package:cobudget/src/budgets/budget_mapper.dart";
 
-import "tag_stub.dart";
+import "../tags/tag_stub.dart";
 
 abstract class BudgetStub {
   static const localId = 1;

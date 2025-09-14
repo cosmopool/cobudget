@@ -1,4 +1,4 @@
-import "package:cobudget/src/transaction/transaction.dart";
+import "package:cobudget/src/transactions/transaction.dart";
 import "package:sqlite3/sqlite3.dart";
 
 Future<void> saveTransaction(Transaction transaction, Database db) async {

@@ -1,6 +1,6 @@
 import "dart:convert";
 
-import "package:cobudget/src/entities/transaction_split.dart";
+import "package:cobudget/src/transaction_splits/transaction_split.dart";
 
 abstract class TransactionSplitMapper {
   static Map<String, dynamic> toMap(TransactionSplit slipt) {

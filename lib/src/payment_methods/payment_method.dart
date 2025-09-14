@@ -1,4 +1,4 @@
-import "package:cobudget/src/entities/user.dart";
+import "package:cobudget/src/users/user.dart";
 
 part "credit_card.dart";
 part "account.dart";

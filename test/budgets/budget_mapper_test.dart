@@ -1,9 +1,9 @@
 import "dart:convert";
 
-import "package:cobudget/src/entities/budget.dart";
-import "package:cobudget/src/entities/tag.dart";
-import "package:cobudget/src/mappers/budget_mapper.dart";
-import "package:cobudget/src/mappers/tag_mapper.dart";
+import "package:cobudget/src/budgets/budget.dart";
+import "package:cobudget/src/budgets/budget_mapper.dart";
+import "package:cobudget/src/tags/tag.dart";
+import "package:cobudget/src/tags/tag_mapper.dart";
 import "package:flutter_test/flutter_test.dart";
 
 void main() {

@@ -1,5 +1,5 @@
-import "package:cobudget/src/entities/user.dart";
-import "package:cobudget/src/mappers/user_mapper.dart";
+import "package:cobudget/src/users/user.dart";
+import "package:cobudget/src/users/user_mapper.dart";
 import "package:flutter_test/flutter_test.dart";
 
 void main() {

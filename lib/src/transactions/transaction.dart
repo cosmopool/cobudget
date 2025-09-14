@@ -1,5 +1,5 @@
-import "package:cobudget/src/entities/tag.dart";
-import "package:cobudget/src/entities/transaction_split.dart";
+import "package:cobudget/src/tags/tag.dart";
+import "package:cobudget/src/transaction_splits/transaction_split.dart";
 import "package:cobudget/src/utils/aliases.dart";
 
 class Transaction {
@@ -21,6 +21,10 @@ class Transaction {
        assert(
          localId != 0,
          "should be a negative integer (not saved) or positive (saved in database)",
+       ),
+       assert(
+         budget != 0,
+         "should be a negative integer (not saved) or positive (saved in database)",
        );
 
   // Factory method for creating new unsaved transactions
@@ -29,7 +33,7 @@ class Transaction {
     required double value,
     required List<Tag> tags,
     required List<TransactionSplit> splits,
-    LocalId? budget,
+    required LocalId budget,
     String? description,
     DateTime? createdAt,
   }) {
@@ -53,7 +57,7 @@ class Transaction {
   final String? externalId;
   final String name;
   final String? description;
-  final LocalId? budget;
+  final LocalId budget;
   final double value;
   final DateTime createdAt;
   final List<Tag> tags;

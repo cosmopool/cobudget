@@ -1,6 +1,6 @@
 import "dart:convert";
 
-import "package:cobudget/src/entities/user.dart";
+import "package:cobudget/src/users/user.dart";
 
 abstract class UserMapper {
   static Map<String, dynamic> toMap(User user) {

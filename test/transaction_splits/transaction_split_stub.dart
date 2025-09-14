@@ -1,5 +1,5 @@
-import "package:cobudget/src/entities/transaction_split.dart";
-import "package:cobudget/src/mappers/transaction_split_mapper.dart";
+import "package:cobudget/src/transaction_splits/transaction_split.dart";
+import "package:cobudget/src/transaction_splits/transaction_split_mapper.dart";
 
 abstract class TransactionSplitStub {
   static const userId = "user_id_stub";

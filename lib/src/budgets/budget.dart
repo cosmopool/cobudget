@@ -1,4 +1,4 @@
-import "package:cobudget/src/entities/tag.dart";
+import "package:cobudget/src/tags/tag.dart";
 
 class Budget {
   Budget({

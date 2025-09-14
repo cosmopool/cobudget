@@ -1,6 +1,6 @@
 import "dart:convert";
 
-import "package:cobudget/src/entities/tag.dart";
+import "package:cobudget/src/tags/tag.dart";
 
 abstract class TagMapper {
   static Map<String, dynamic> toMap(Tag tag) {

@@ -1,5 +1,5 @@
-import "package:cobudget/src/entities/transaction_split.dart";
-import "package:cobudget/src/mappers/transaction_split_mapper.dart";
+import "package:cobudget/src/transaction_splits/transaction_split.dart";
+import "package:cobudget/src/transaction_splits/transaction_split_mapper.dart";
 import "package:flutter_test/flutter_test.dart";
 
 void main() {

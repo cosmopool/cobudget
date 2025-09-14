@@ -1,12 +1,12 @@
-import "package:cobudget/src/entities/tag.dart";
-import "package:cobudget/src/entities/transaction_split.dart";
-import "package:cobudget/src/transaction/transaction.dart";
-import "package:cobudget/src/transaction/transaction_mapper.dart";
+import "package:cobudget/src/tags/tag.dart";
+import "package:cobudget/src/transaction_splits/transaction_split.dart";
+import "package:cobudget/src/transactions/transaction.dart";
+import "package:cobudget/src/transactions/transaction_mapper.dart";
 import "package:flutter_test/flutter_test.dart";
 
-import "../stubs/tag_stub.dart";
-import "../stubs/transaction_split_stub.dart";
-import "../stubs/transaction_stub.dart";
+import "../tags/tag_stub.dart";
+import "../transaction_splits/transaction_split_stub.dart";
+import "../transactions/transaction_stub.dart";
 
 void main() {
   final Transaction stub = TransactionStub.stubSynced;
@@ -20,10 +20,7 @@ void main() {
     expect(map[TransactionMapper.kDescription], stub.description);
     expect(map[TransactionMapper.kBudget], stub.budget);
     expect(map[TransactionMapper.kValue], stub.value);
-    expect(
-      map[TransactionMapper.kCreatedAt],
-      stub.createdAt.millisecondsSinceEpoch,
-    );
+    expect(map[TransactionMapper.kCreatedAt], stub.createdAt.millisecondsSinceEpoch);
     expect(map[TransactionMapper.kTags], TagStub.maps);
     expect(map[TransactionMapper.kSplits], TransactionSplitStub.maps);
   });

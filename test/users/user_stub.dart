@@ -1,4 +1,4 @@
-import "package:cobudget/src/entities/user.dart";
+import "package:cobudget/src/users/user.dart";
 
 abstract class UserStub {
   static const localId = 1;

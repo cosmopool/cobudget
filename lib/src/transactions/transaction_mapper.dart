@@ -1,10 +1,10 @@
 import "dart:convert";
 
-import "package:cobudget/src/entities/tag.dart";
-import "package:cobudget/src/entities/transaction_split.dart";
-import "package:cobudget/src/mappers/tag_mapper.dart";
-import "package:cobudget/src/mappers/transaction_split_mapper.dart";
-import "package:cobudget/src/transaction/transaction.dart";
+import "package:cobudget/src/tags/tag.dart";
+import "package:cobudget/src/tags/tag_mapper.dart";
+import "package:cobudget/src/transaction_splits/transaction_split.dart";
+import "package:cobudget/src/transaction_splits/transaction_split_mapper.dart";
+import "package:cobudget/src/transactions/transaction.dart";
 import "package:cobudget/src/utils/aliases.dart";
 
 abstract class TransactionMapper {
@@ -37,10 +37,9 @@ abstract class TransactionMapper {
         .map<Tag>(TagMapper.fromMap)
         .toList();
 
-    final List<TransactionSplit> splitsMap =
-        (map[kSplits] as List<Map<String, dynamic>>)
-            .map<TransactionSplit>(TransactionSplitMapper.fromMap)
-            .toList();
+    final List<TransactionSplit> splitsMap = (map[kSplits] as List<Map<String, dynamic>>)
+        .map<TransactionSplit>(TransactionSplitMapper.fromMap)
+        .toList();
 
     return Transaction(
       localId: map[kLocalId] as LocalId,
@@ -55,8 +54,7 @@ abstract class TransactionMapper {
     );
   }
 
-  static String toJson(Transaction transaction) =>
-      json.encode(toMap(transaction));
+  static String toJson(Transaction transaction) => json.encode(toMap(transaction));
 
   static Transaction fromJson(String source) {
     return fromMap(json.decode(source) as Map<String, dynamic>);

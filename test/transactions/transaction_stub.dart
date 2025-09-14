@@ -1,8 +1,9 @@
-import "package:cobudget/src/transaction/transaction.dart";
+import "package:cobudget/src/transactions/transaction.dart";
 
-import "budget_stub.dart";
-import "tag_stub.dart";
-import "transaction_split_stub.dart";
+import "../budgets/budget_stub.dart";
+import "../tags/tag_stub.dart";
+import "../transaction_splits/transaction_split_stub.dart";
+
 
 abstract class TransactionStub {
   static const localId = 1;
