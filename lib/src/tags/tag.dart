@@ -21,11 +21,11 @@ class Tag {
        assert(externalId == null || externalId.isNotEmpty),
        assert(name.isNotEmpty);
 
-  final LocalId localId;
+  LocalId localId;
   final ExternalId? externalId;
   final String name;
   final TagKind kind;
-  final String? parentId;
+  final LocalId? parentId;
 
   /// Returns `true` if this entity has been persisted to the database.
   ///
@@ -80,7 +80,7 @@ class Tag {
     final LocalId localId = map[kLocalId];
     final ExternalId externalId = map[kExternalId];
     final String name = map[kName];
-    final String? parentId = map[kParentId];
+    final LocalId? parentId = map[kParentId];
 
     return Tag(
       localId: localId,
