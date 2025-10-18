@@ -6,7 +6,6 @@ environment:
   sdk: ^3.9.2
 
 dependencies:
-  cupertino_icons: ^1.0.8
   flutter:
     sdk: flutter
   sqlite3: ^2.9.0
